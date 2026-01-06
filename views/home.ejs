@@ -382,7 +382,7 @@
                             <td><%= index + 1 %></td>
                             <td><span class="badge"><%= url.short_id %></span></td>
                             <td><%= url.redirect_url %></td>
-                            <td><a href="http://localhost:8000/<%= url.short_id %>" target="_blank">http://localhost:8000/<%= url.short_id %></a></td>
+                            <td><a href="<%= baseUrl %>/<%= url.short_id %>" target="_blank"><%= baseUrl %>/<%= url.short_id %></a></td>
                             <td><%= url.visit_history.length %></td>
                             <td><a href="/delete/<%= url.short_id %>" class="delete-btn">Delete</a></td>
                         </tr>

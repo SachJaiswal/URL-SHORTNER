@@ -44,7 +44,7 @@ async function getAnalysis (req,res){
     }
     return res.status(200).json({"Total Visits":url.visit_history.length,
         "Visits":url.visit_history,
-        "Short URL":`http://localhost:8000/${shortId}`}
+        "Short URL":`${req.protocol}://${req.get("host")}/${shortId}`}
     );
 }
 

@@ -13,6 +13,7 @@ const connectiondb = require("./connection");
 const { handleDeleteShortUrl } = require("./controller/url");
 
 const app = express();
+app.set('trust proxy', 1);
 const port = process.env.PORT || 8000;
 const { resstrictToLoggedinUserOnly,checkAuth } = require("./middleware/auth");
 
@@ -37,6 +38,11 @@ app.use(express.urlencoded({ extended: false }));   // accept form data
 app.use(logreqres("./log.txt"));                    // logger
 app.use(cookieParser());                            // cookie parser
 
+app.use((req, res, next) => {
+    res.locals.baseUrl = `${req.protocol}://${req.get("host")}`;
+    next();
+});
+
 app.set("view engine", "ejs");                        // view engine
 app.set("views",path.resolve("./views"));             // view folder
 app.use(express.static(path.resolve("./views")));
@@ -50,7 +56,6 @@ app.get("/", checkAuth, (req, res, next) => {
 });
 app.use("/", checkAuth, (req, res, next) => {
     if (req.user) res.locals.user = req.user;
-    res.locals.baseUrl = `${req.protocol}://${req.get("host")}`;
     next();
 }, staticRoute);
 
