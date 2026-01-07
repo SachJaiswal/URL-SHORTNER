@@ -1,14 +1,83 @@
-# URL Shortener
+# LinkSnap - Advanced URL Shortener 🔗
 
-A simple URL shortener application built with Node.js, Express, and MongoDB.
+<!-- PASTE YOUR WEBSITE IMAGE LINK BELOW -->
+![Project Banner](PLACEHOLDER_FOR_WEBSITE_IMAGE_HERE)
+<br>
 
-## Features
-- Shorten long URLs
-- Redirect to original URLs
-- Track visit history
-- User authentication (Signup/Login)
-- Server-side rendering with EJS
+LinkSnap is a robust, full-stack URL shortener application built with Node.js, Express, and MongoDB. It allows users to shorten long URLs, track visit analytics, and generate downloadable QR codes for their links in a dedicated gallery.
 
-## Setup
-1. Install dependencies: `npm install`
-2. Start the server: `npm start`
+## 🚀 Features
+
+- **User Authentication**: Secure Signup and Login functionality to manage your personal links.
+- **Instant URL Shortening**: Convert long, unwieldy URLs into short, shareable links using unique IDs.
+- **QR Code Generator**: Automatically generate high-resolution QR codes for every shortened link.
+- **QR Code Gallery**: A dedicated dashboard to view, manage, and download QR codes for all your links.
+- **Detailed Analytics**: Track total clicks and view detailed visit history (IP addresses and timestamps).
+- **Link Management**: Dashboard to view all generated links and delete them when no longer needed.
+- **Responsive Design**: A modern, mobile-friendly interface built with EJS and CSS.
+
+## 📸 Screenshots
+
+<!-- PASTE SCREENSHOTS LINKS BELOW -->
+
+| Landing Page | Dashboard |
+|:---:|:---:|
+| !Landing | !Dashboard |
+
+| QR Code Gallery | Mobile View |
+|:---:|:---:|
+| !QR Gallery | !Mobile |
+
+## 🛠️ Tech Stack
+
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (Mongoose)
+- **Templating**: EJS (Embedded JavaScript)
+- **Styling**: Custom CSS with responsive design
+- **Key Libraries**:
+  - `nanoid`: For generating unique short IDs.
+  - `qrcode`: For server-side QR code generation.
+  - `cookie-parser`: For handling authentication sessions.
+
+## ⚙️ Installation & Setup
+
+Follow these steps to run the project locally:
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/linksnap.git
+cd linksnap
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+Create a `.env` file in the root directory and add the following:
+
+```env
+PORT=8000
+MONGODB_CONNECT=mongodb://127.0.0.1:27017/short-url
+```
+
+### 4. Start the Server
+```bash
+npm start
+```
+
+### 5. Access the Application
+Open your browser and navigate to:
+`http://localhost:8000`
+
+## 📂 Project Structure
+
+```
+├── controller/      # Business logic for URLs and Users
+├── middleware/      # Auth checks and request logging
+├── model/           # Mongoose schemas (Url, User)
+├── routes/          # Express route definitions
+├── views/           # EJS templates (Home, Landing, QR Gallery)
+├── index.js         # Application entry point
+└── package.json     # Dependencies and scripts
