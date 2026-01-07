@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 
 const Url = require("./model/url")
+const User = require("./model/user");
 const logreqres  = require("./middleware/index");
 const cookieParser = require("cookie-parser");
 
@@ -54,8 +55,12 @@ app.get("/", checkAuth, (req, res, next) => {
     if (!req.user) return res.render("landing");
     next();
 });
-app.use("/", checkAuth, (req, res, next) => {
-    if (req.user) res.locals.user = req.user;
+app.use("/", checkAuth, async (req, res, next) => {
+    if (req.user) {
+        const user = await User.findById(req.user._id);
+        res.locals.user = user;
+        req.user = user;
+    }
     next();
 }, staticRoute);
 
