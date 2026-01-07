@@ -10,7 +10,7 @@ const urlRoute = require("./routes/url");
 const staticRoute = require("./routes/staticroute");
 const userRoute = require("./routes/user");
 const connectiondb = require("./connection");
-const { handleDeleteShortUrl } = require("./controller/url");
+const { handleDeleteShortUrl, handleRenderQrPage } = require("./controller/url");
 
 const app = express();
 app.set('trust proxy', 1);
@@ -60,6 +60,7 @@ app.use("/", checkAuth, (req, res, next) => {
 }, staticRoute);
 
 app.get("/delete/:shortId", resstrictToLoggedinUserOnly, handleDeleteShortUrl);
+app.get("/qrcode", resstrictToLoggedinUserOnly, handleRenderQrPage);
 
 app.get("/:shortId", async (req, res) => {
     const shortId = req.params.shortId;

@@ -1,5 +1,6 @@
 const Url = require("../model/url");
 const User = require("../model/user");
+const QRCode = require('qrcode');
 
 async function handleGenerateNewShortURl(req, res) {
     const body = req.body;
@@ -13,7 +14,8 @@ async function handleGenerateNewShortURl(req, res) {
     const existingEntry = await Url.findOne({ redirect_url: body.url, createdBy: req.user._id });
     if (existingEntry) {
         const allUrls = await Url.find({ createdBy: req.user._id });
-        return res.render("home", { id: existingEntry.short_id, urls: allUrls, user: user });
+        const qrCode = await QRCode.toDataURL(`${req.protocol}://${req.get("host")}/${existingEntry.short_id}`);
+        return res.render("home", { id: existingEntry.short_id, urls: allUrls, user: user, qrCode });
     }
 
     // 2. If not found, generate a new ID and create
@@ -29,7 +31,8 @@ async function handleGenerateNewShortURl(req, res) {
             createdBy: req.user._id,
         });
         const allUrls = await Url.find({ createdBy: req.user._id });
-        return res.render("home", { id: shortID, urls: allUrls, user: user });
+        const qrCode = await QRCode.toDataURL(`${req.protocol}://${req.get("host")}/${shortID}`);
+        return res.render("home", { id: shortID, urls: allUrls, user: user, qrCode });
     } catch (error) {
         console.error("Error in handleGenerateNewShortURl:", error);
         return res.status(500).json({ error: "Internal Server Error" });
@@ -56,8 +59,26 @@ async function handleDeleteShortUrl(req, res) {
     return res.render("home", { urls: allUrls, user: user });
 }
 
+async function handleRenderQrPage(req, res) {
+    const allUrls = await Url.find({ createdBy: req.user._id });
+    const user = await User.findById(req.user._id);
+    return res.render("qrcode", { urls: allUrls, user: user });
+}
+
+async function handleGetQrCode(req, res) {
+    const shortId = req.params.shortId;
+    const urlEntry = await Url.findOne({ short_id: shortId });
+    if (!urlEntry) return res.status(404).json({ error: "URL not found" });
+    
+    const url = `${req.protocol}://${req.get("host")}/${shortId}`;
+    const qrCode = await QRCode.toDataURL(url);
+    return res.json({ qrCode });
+}
+
 module.exports = {
     handleGenerateNewShortURl,
     getAnalysis,
-    handleDeleteShortUrl
+    handleDeleteShortUrl,
+    handleRenderQrPage,
+    handleGetQrCode
 };

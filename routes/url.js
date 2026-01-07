@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Url = require("../model/url");
-const {handleGenerateNewShortURl,getAnalysis}= require("../controller/url");
+const {handleGenerateNewShortURl,getAnalysis, handleGetQrCode}= require("../controller/url");
 /* =======================
     ROUTES
 ======================= */
@@ -10,4 +10,5 @@ const {handleGenerateNewShortURl,getAnalysis}= require("../controller/url");
 router.post("/",handleGenerateNewShortURl);
 
 router.get("/analysis/:shortId",getAnalysis);
+router.get("/qr/:shortId", handleGetQrCode);
 module.exports = router;
