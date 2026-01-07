@@ -23,7 +23,7 @@ LinkSnap is a robust, full-stack URL shortener application built with Node.js, E
 
 | Landing Page | Dashboard |
 |:---:|:---:|
-| <img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/a62fdd63-a0ab-4583-9fe8-04c042c6f669" /> |
+| <img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/a62fdd63-a0ab-4583-9fe8-04c042c6f669" /> 
  | <img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/1df64c12-d2fc-4d34-bb75-d1a87966dd03" /> |
 
 | QR Code Gallery | 
