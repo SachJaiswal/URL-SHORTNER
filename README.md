@@ -1,7 +1,8 @@
 # LinkSnap - Advanced URL Shortener 🔗
 
 <!-- PASTE YOUR WEBSITE IMAGE LINK BELOW -->
-![Project Banner](PLACEHOLDER_FOR_WEBSITE_IMAGE_HERE)
+<img width="377" height="98" alt="image" src="https://github.com/user-attachments/assets/01a96752-bbad-4197-bef4-71912fce2678" />
+
 <br>
 
 LinkSnap is a robust, full-stack URL shortener application built with Node.js, Express, and MongoDB. It allows users to shorten long URLs, track visit analytics, and generate downloadable QR codes for their links in a dedicated gallery.
@@ -22,11 +23,14 @@ LinkSnap is a robust, full-stack URL shortener application built with Node.js, E
 
 | Landing Page | Dashboard |
 |:---:|:---:|
-| !Landing | !Dashboard |
+| <img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/a62fdd63-a0ab-4583-9fe8-04c042c6f669" /> |
+ | <img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/1df64c12-d2fc-4d34-bb75-d1a87966dd03" /> |
 
-| QR Code Gallery | Mobile View |
-|:---:|:---:|
-| !QR Gallery | !Mobile |
+| QR Code Gallery | 
+|:---:|
+| <img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/dafc4f40-8a5e-4e1d-806f-47ecb2fe085b" /> |
+
+
 
 ## 🛠️ Tech Stack
 
@@ -45,7 +49,7 @@ Follow these steps to run the project locally:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/linksnap.git
+https://github.com/SachJaiswal/URL-SHORTNER.git
 cd linksnap
 ```
 
