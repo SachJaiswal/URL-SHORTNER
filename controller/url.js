@@ -14,7 +14,7 @@ async function handleGenerateNewShortURl(req, res) {
     const existingEntry = await Url.findOne({ redirect_url: body.url, createdBy: req.user._id });
     if (existingEntry) {
         const allUrls = await Url.find({ createdBy: req.user._id });
-        const qrCode = await QRCode.toDataURL(`${req.protocol}://${req.get("host")}/${existingEntry.short_id}`);
+        const qrCode = await QRCode.toDataURL(`${req.protocol}://${req.get("host")}/${existingEntry.short_id}`, { width: 400, margin: 2 });
         return res.render("home", { id: existingEntry.short_id, urls: allUrls, user: user, qrCode });
     }
 
@@ -31,7 +31,7 @@ async function handleGenerateNewShortURl(req, res) {
             createdBy: req.user._id,
         });
         const allUrls = await Url.find({ createdBy: req.user._id });
-        const qrCode = await QRCode.toDataURL(`${req.protocol}://${req.get("host")}/${shortID}`);
+        const qrCode = await QRCode.toDataURL(`${req.protocol}://${req.get("host")}/${shortID}`, { width: 400, margin: 2 });
         return res.render("home", { id: shortID, urls: allUrls, user: user, qrCode });
     } catch (error) {
         console.error("Error in handleGenerateNewShortURl:", error);
@@ -71,7 +71,7 @@ async function handleGetQrCode(req, res) {
     if (!urlEntry) return res.status(404).json({ error: "URL not found" });
     
     const url = `${req.protocol}://${req.get("host")}/${shortId}`;
-    const qrCode = await QRCode.toDataURL(url);
+    const qrCode = await QRCode.toDataURL(url, { width: 400, margin: 2 });
     return res.json({ qrCode });
 }
 
