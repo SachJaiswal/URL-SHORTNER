@@ -45,10 +45,11 @@ async function getAnalysis (req,res){
     if (!url) {
         return res.status(404).json({ error: "Short URL not found" });
     }
-    return res.status(200).json({"Total Visits":url.visit_history.length,
-        "Visits":url.visit_history,
-        "Short URL":`${req.protocol}://${req.get("host")}/${shortId}`}
-    );
+    return res.render("analytics", {
+        url: url,
+        user: req.user,
+        shortUrl: `${req.protocol}://${req.get("host")}/${shortId}`
+    });
 }
 
 async function handleDeleteShortUrl(req, res) {

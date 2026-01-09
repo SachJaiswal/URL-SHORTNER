@@ -127,6 +127,22 @@
             background: rgba(239, 68, 68, 0.3);
         }
         
+        .analytics-btn {
+            padding: 6px 12px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            margin-right: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .analytics-btn:hover {
+            background: rgba(99, 102, 241, 0.3);
+        }
+        
         .form-container {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -377,7 +393,7 @@
                         <th>Original URL</th>
                         <th>Short URL</th>
                         <th>Visits</th>
-                        <th>Delete</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -388,7 +404,10 @@
                             <td><%= url.redirect_url %></td>
                             <td><a href="<%= baseUrl %>/<%= url.short_id %>" target="_blank"><%= baseUrl %>/<%= url.short_id %></a></td>
                             <td><%= url.visit_history.length %></td>
-                            <td><a href="/delete/<%= url.short_id %>" class="delete-btn">Delete</a></td>
+                            <td>
+                                <a href="/url/analytics/<%= url.short_id %>" class="analytics-btn">Analytics</a>
+                                <a href="/delete/<%= url.short_id %>" class="delete-btn">Delete</a>
+                            </td>
                         </tr>
                     <% }) %>
                 </tbody>

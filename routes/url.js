@@ -9,6 +9,6 @@ const {handleGenerateNewShortURl,getAnalysis, handleGetQrCode}= require("../cont
 
 router.post("/",handleGenerateNewShortURl);
 
-router.get("/analysis/:shortId",getAnalysis);
+router.get("/analytics/:shortId",getAnalysis);
 router.get("/qr/:shortId", handleGetQrCode);
 module.exports = router;
