@@ -84,7 +84,7 @@ app.get("/:shortId", async (req, res) => {
             $push: {
                 visit_history: {
                     ip_address: ip,
-                    visited_at: new Date(),
+                    visited_at: new Date().toLocaleString(),
                     user_agent: req.headers['user-agent'],
                     referer: req.headers['referer'],
                     country: geo?.country,
