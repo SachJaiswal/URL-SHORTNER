@@ -5,6 +5,7 @@ const path = require("path");
 const Url = require("./model/url")
 const User = require("./model/user");
 const logreqres  = require("./middleware/index");
+const geoip = require('geoip-lite');
 const cookieParser = require("cookie-parser");
 
 const urlRoute = require("./routes/url");
@@ -69,14 +70,23 @@ app.get("/qrcode", resstrictToLoggedinUserOnly, handleRenderQrPage);
 
 app.get("/:shortId", async (req, res) => {
     const shortId = req.params.shortId;
+    const ip = req.ip;
+    
+    // Use a public IP for lookup if localhost is detected (for testing purposes)
+    const lookupIp = (ip === '::1' || ip === '127.0.0.1') ? '8.8.8.8' : ip;
+    const geo = geoip.lookup(lookupIp);
 
     const entry = await Url.findOneAndUpdate(
         { short_id: shortId },
         {
             $push: {
                 visit_history: {
-                    ip_address: req.ip,
-                    visited_at: new Date()
+                    ip_address: ip,
+                    visited_at: new Date(),
+                    user_agent: req.headers['user-agent'],
+                    referer: req.headers['referer'],
+                    country: geo?.country,
+                    city: geo?.city
                 }
             }
         },

@@ -13,7 +13,11 @@ const urlSchema = new mongoose.Schema({
     visit_history:{
         type:[{
             ip_address:{type:String},
-            visited_at:{type:Date}
+            visited_at:{type:Date},
+            user_agent:{type:String},
+            referer:{type:String},
+            country:{type:String},
+            city:{type:String}
         }]
     },
     createdBy:{
