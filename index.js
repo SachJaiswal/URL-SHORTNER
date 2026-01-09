@@ -15,7 +15,7 @@ const connectiondb = require("./connection");
 const { handleDeleteShortUrl, handleRenderQrPage } = require("./controller/url");
 
 const app = express();
-app.set('trust proxy', 1);
+app.set('trust proxy', true); 
 const port = process.env.PORT || 8000;
 const { resstrictToLoggedinUserOnly,checkAuth } = require("./middleware/auth");
 
@@ -70,7 +70,9 @@ app.get("/qrcode", resstrictToLoggedinUserOnly, handleRenderQrPage);
 
 app.get("/:shortId", async (req, res) => {
     const shortId = req.params.shortId;
-    const ip = req.ip;
+    const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || 
+               req.socket.remoteAddress || 
+               req.ip;
     
     // Use a public IP for lookup if localhost is detected (for testing purposes)
     const lookupIp = (ip === '::1' || ip === '127.0.0.1') ? '8.8.8.8' : ip;

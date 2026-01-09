@@ -6,6 +6,44 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%238b5cf6'/></svg>" type="image/svg+xml">
     <title>URL Shortener</title>
     <link rel="stylesheet" href="/landing.css">
+    <style>
+        @media (max-width: 768px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px 0;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+                padding: 0 15px;
+            }
+            
+            .stats-grid, 
+            .features-grid, 
+            .steps {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .step {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">

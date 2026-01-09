@@ -188,6 +188,23 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            th, td {
+                padding: 12px 10px;
+            }
+        }
     </style>
 </head>
 <body>
